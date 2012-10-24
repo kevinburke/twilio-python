@@ -18,8 +18,8 @@ from twilio.rest.resources import PhoneNumbers
 from twilio.rest.resources import Conferences
 from twilio.rest.resources import Sandboxes
 from twilio.rest.resources import Usage
-from urllib import urlencode
-from urlparse import urljoin
+from twilio.compat import urlencode
+from twilio.compat import urljoin
 
 
 def find_credentials():
