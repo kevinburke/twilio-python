@@ -59,7 +59,7 @@ class ListResourceTest(unittest.TestCase):
         self.r.request.return_value = Mock(), {self.r.key: [{'sid': 'foo'}]}
         advance_iterator(self.r.iter())
         self.r.request.assert_called_with("GET", "https://api.twilio.com/2010-04-01/Resources", params={})
- 
+
     def testIterOneItem(self):
         self.r.request = Mock()
         self.r.request.return_value = Mock(), {self.r.key: [{'sid': 'foo'}]}
@@ -69,24 +69,13 @@ class ListResourceTest(unittest.TestCase):
 
         with self.assertRaises(StopIteration):
             advance_iterator(items)
-  
+
     def testIterNoNextPage(self):
         self.r.request = Mock()
         self.r.request.return_value = Mock(), {self.r.key: []}
 
         with self.assertRaises(StopIteration):
             advance_iterator(self.r.iter())
- 
-    def testKeyValue(self):
-        self.r.key = "Hey"
-        self.assertEquals(self.r.key, "Hey")
- 
-    def testInstanceLoading(self):
-        instance = self.r.load_instance({"sid": "foo"})
-
-        self.assertIsInstance(instance, InstanceResource)
-        self.assertEquals(instance.sid, "foo")
-
 
     def testInstanceLoading(self):
         instance = self.r.load_instance({"sid": "foo"})
